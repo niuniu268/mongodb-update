@@ -7,3 +7,7 @@ spring:
       authentication-database: admin
       repositories:
         type: auto
+      username: mongoadmin
+      password: admin
+
+
