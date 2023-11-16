@@ -35,7 +35,7 @@ class DemoUpdateApplicationTests {
 
 	@AfterEach
 	void afterMethod(){
-		vinInfoRepository.updateVinInfoByVinClean( "002", "003field1", "003field2", "003field3" );
+		vinInfoRepository.updateVinInfoByVinClean( "003", "003field1", "003field2", "003field3" );
 	}
 
 	@Test
@@ -48,33 +48,41 @@ class DemoUpdateApplicationTests {
 	void testUpdateOneFieldbyVinJustQuery(){
 		System.out.println("before update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 		System.out.println( vinInfoRepository.updateVinInfoByVinJustQuery( "003", "002"));
 		System.out.println("after update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 	}
 
 	@Test
 	void testUpdateOneFieldbyVin(){
 		System.out.println("before update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 		vinInfoRepository.updateVinInfoByVinTagF1( "003", "002");
 		System.out.println("after update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 	}
 
 	@Test
 	void testUpdateFieldsbyVin(){
 		System.out.println("before update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 		vinInfoRepository.updateVinInfoByVinMFs( "003", "002", "004", "005");
 		System.out.println("after update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 	}
 	@Test
 	void testMongoTemplate(){
 
 		System.out.println("before update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
+
 
 		Query query = new Query();
 		query.addCriteria( Criteria.where("vin").is("003"));
@@ -84,17 +92,19 @@ class DemoUpdateApplicationTests {
 
 		System.out.println("after update" );
 		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
-
+		System.out.println("===========================" );
 	}
 
 	@Test
 	void testMongoTemplateServiceImpl() throws IllegalAccessException {
 
 		System.out.println("before update" );
-		System.out.println(vinInfoRepository.findAllByVin( "002" ) );
+		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+
+		System.out.println("===========================" );
 
 		VinInfo testVin = new VinInfo(  );
-		testVin.setVin( "002" );
+		testVin.setVin( "003" );
 		testVin.setField1( "005field1" );
 		testVin.setField2( "005field2" );
 		testVin.setField3( "005field3" );
@@ -105,29 +115,31 @@ class DemoUpdateApplicationTests {
 		mongoTemplateService.updateVinInfo( testVin );
 
 		System.out.println("after update" );
-		System.out.println(vinInfoRepository.findAllByVin( "002" ) );
-
+		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 	}
 
 	@Test
 	void testRepositoryServiceImpl(){
 
 		System.out.println("before update" );
-		System.out.println(vinInfoRepository.findAllByVin( "002" ) );
+		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 		VinInfo testVin = new VinInfo(  );
-		testVin.setVin( "002" );
+		testVin.setVin( "003" );
 		testVin.setField1( "005field1" );
 		testVin.setField2( "005field2" );
 		testVin.setField3( "005field3" );
 		testVin.setField4( "005field4" );
+
 		System.out.println("Mock input object: " );
 		System.out.println(testVin );
 
 		repositoryService.updateVinInfo( testVin );
 
-
 		System.out.println("after update" );
-		System.out.println(vinInfoRepository.findAllByVin( "002" ) );
+		System.out.println(vinInfoRepository.findAllByVin( "003" ) );
+		System.out.println("===========================" );
 
 	}
 

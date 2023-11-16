@@ -18,15 +18,15 @@ public class MongoTemplateServiceImpl implements MongoTemplateService {
     MongoTemplate mongoTemplate;
     @Override
     public Boolean updateVinInfo (VinInfo vinInfo) throws IllegalAccessException {
-
-        Map<String, String> mapVin = ObjectConvertMap(vinInfo);
-
+//      The input object, `vinInfo`, is used to find a data entry in the database where the VIN matches the input object's VIN.
         Query query = new Query(Criteria.where("vin").is(vinInfo.getVin()));
-
         VinInfo resultQuery = mongoTemplate.findOne( query,  VinInfo.class);
 
+//        Using ObjectConvertMap to convert object into map
+        Map<String, String> mapVin = ObjectConvertMap(vinInfo);
         Map<String, String> mapQuery = ObjectConvertMap(resultQuery);
 
+//        comparing the fields between the input object's map and the query map. If the values differ, the values are updated.
         Set <String> keySet = mapVin.keySet( );
         for (String key : keySet) {
             if (!Objects.equals(key, "id")) {
@@ -40,7 +40,7 @@ public class MongoTemplateServiceImpl implements MongoTemplateService {
 
         return true;
     }
-
+//  converting object into a map
     protected Map<String, String> ObjectConvertMap(VinInfo vinInfo) throws IllegalAccessException {
 
         Map<String, String> map = new HashMap <>();
@@ -51,8 +51,6 @@ public class MongoTemplateServiceImpl implements MongoTemplateService {
         }
 
         return  map;
-
-
     }
 
 

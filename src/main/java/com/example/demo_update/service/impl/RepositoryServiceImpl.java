@@ -14,8 +14,10 @@ public class RepositoryServiceImpl implements RepositoryService {
     private VinInfoRepository vinInfoRepository;
     @Override
     public Boolean updateVinInfo (VinInfo vinInfo) {
-
+//      retrieving all data with a matching VIN from the database
         for (VinInfo info : vinInfoRepository.findAllByVin( vinInfo.getVin( ) )) {
+
+//            Field1 is checked for equality between the input object and the database and updated
             if (!Objects.equals( info.getField1(), vinInfo.getField1())){
                 vinInfoRepository.updateVinInfoByVinTagF1( vinInfo.getVin(), vinInfo.getField1());
             }
